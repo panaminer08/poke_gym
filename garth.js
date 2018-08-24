@@ -84,6 +84,37 @@ class Pokemon {
     for (let i = 0; i < data.abilities.length; i++) {
       this.abilities.push(data.abilities[i].ability.name)
     }
+    function getMoves(element) {
+      let makingMoves = element.moves;
+      let move = [];
+      let ctr = makingMoves.length;
+
+      for (let i = 0; i < 4; i++) {
+        let randMoves = Math.floor(Math.random() * ctr);
+        axios.get(makingMoves[randMoves].move.url)
+          .then (function (catchemBonus) {
+            let pokemoves = catchemBonus.data;
+            console.log(pokemoves);
+            console.log(`Moves${i}: ${ makingMoves[randMoves].move.name }
+                    Accruacy: ${ pokemoves.accuracy }
+                    Power: ${ pokemoves.power }
+                    Priority: ${ pokemoves.priority }`);
+
+            move.push(`${ makingMoves[randMoves].move.name }: Accuracy: ${ pokemoves.accuracy }, Power: ${ pokemoves.power }, Priority: ${ pokemoves.priority }`);
+
+
+          }).catch(function (response) {
+            console.error(response);
+          })
+      }
+      return element.move = move;
+
+      // getMoves(poke1);
+      // getMoves(poke2);
+      // getMoves(poke3);
+      }
+
+  
   }
 }
 
@@ -139,7 +170,11 @@ function myPokemom(pokemon) {
               <div class="collapsible-body">
                 <span>
                   <ul>
-                    <li><strong>Moves:</strong></li> 
+                    <li><strong>Moves:</strong></li>
+                    <li>${ pokemon.move[0] } 
+                    <li>${ pokemon.move[1] } 
+                    <li>${ pokemon.move[2] } 
+                    <li>${ pokemon.move[3] } 
                   </ul>
                 </span>
               </div>
@@ -168,43 +203,48 @@ const chooseRaichu = axios.get("https://pokeapi.co/api/v2/pokemon/26/");
 const chooseLeafeon = axios.get("https://pokeapi.co/api/v2/pokemon/470/");
 const chooseArceus = axios.get("https://pokeapi.co/api/v2/pokemon/493/");
 
+const poke1 = []; // create constants for each promise which represents a different pokemon
+const poke2 = [];
+const poke3 = [];
+
+
 // Use axios.all to call all three promises at once. Thank you Pablo.
 axios.all([chooseRaichu, chooseLeafeon, chooseArceus])
   .then(catchem => {
-    const poke1 = catchem[0].data; // create constants for each promise which represents a different pokemon
-    const poke2 = catchem[1].data;
-    const poke3 = catchem[2].data;
+    poke1 = catchem[0].data; // create constants for each promise which represents a different pokemon
+    poke2 = catchem[1].data;
+    poke3 = catchem[2].data;
 
     // new ajax request to get moves list for each pokemon - this code was written by Rich but I fully understand how it works 
-    function getMoves(element) {
-      let makingMoves = element.moves;
-      let move = [];
-      let ctr = makingMoves.length;
+    // function getMoves(element) {
+    //   let makingMoves = element.moves;
+    //   let move = [];
+    //   let ctr = makingMoves.length;
 
-      for (let i = 0; i < 4; i++) {
-        let randMoves = Math.floor(Math.random() * ctr);
-        axios.get(makingMoves[randMoves].move.url)
-          .then (function (catchemBonus) {
-            let pokemoves = catchemBonus.data;
-            console.log(pokemoves);
-            console.log(`Moves${i}: ${ makingMoves[randMoves].move.name }
-                    Accruacy: ${ pokemoves.accuracy }
-                    Power: ${ pokemoves.power }
-                    Priority: ${ pokemoves.priority }`);
+    //   for (let i = 0; i < 4; i++) {
+    //     let randMoves = Math.floor(Math.random() * ctr);
+    //     axios.get(makingMoves[randMoves].move.url)
+    //       .then (function (catchemBonus) {
+    //         let pokemoves = catchemBonus.data;
+    //         console.log(pokemoves);
+    //         console.log(`Moves${i}: ${ makingMoves[randMoves].move.name }
+    //                 Accruacy: ${ pokemoves.accuracy }
+    //                 Power: ${ pokemoves.power }
+    //                 Priority: ${ pokemoves.priority }`);
 
-            move.push(`${ makingMoves[randMoves].move.name }: Accuracy: ${ pokemoves.accuracy }, Power: ${ pokemoves.power }, Priority: ${ pokemoves.priority }`);
+    //         move.push(`${ makingMoves[randMoves].move.name }: Accuracy: ${ pokemoves.accuracy }, Power: ${ pokemoves.power }, Priority: ${ pokemoves.priority }`);
 
 
-          }).catch(function (response) {
-            console.error(response);
-          })
-      }
-      return element.move = move;
+    //       }).catch(function (response) {
+    //         console.error(response);
+    //       })
+    //   }
+    //   return element.move = move;
 
-      // getMoves(poke1);
-      // getMoves(poke2);
-      // getMoves(poke3);
-      }
+    //   // getMoves(poke1);
+    //   // getMoves(poke2);
+    //   // getMoves(poke3);
+    //   }
 
     console.log(poke1);
 
