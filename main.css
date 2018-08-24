@@ -1,0 +1,25 @@
+header {
+  text-align: center;
+  /* color: white; */ }
+
+body {
+  background-color: lavender;
+  /* background-image: url("images/Pokeball-Best-Wallpaper.jpg");
+  background-position: center, center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0%; */ }
+
+.card-title {
+  color: black !important; }
+
+.box {
+  text-transform: capitalize; }
+
+span, li {
+  text-transform: capitalize; }
+
+li:last-child {
+  text-transform: initial; }
+
+/*# sourceMappingURL=main.css.map */
