@@ -3,7 +3,7 @@ header {
   /* color: white; */ }
 
 body {
-  background-color: lavender;
+  background-color: #f11414;
   /* background-image: url("images/Pokeball-Best-Wallpaper.jpg");
   background-position: center, center;
   background-repeat: no-repeat;
@@ -12,6 +12,9 @@ body {
 
 .card-title {
   color: black !important; }
+
+button {
+  background-color: red; }
 
 .box {
   text-transform: capitalize; }
@@ -27,5 +30,10 @@ li:last-child {
   text-shadow: 0px -2px 4px #fff, 0px -2px 10px #FF3,0px -10px 20px #F90, 0px -20px 40px #C33;
   font-size: 30px;
   text-align: center; }
+
+footer {
+  font-size: 15px;
+  color: #f5f5f5;
+  text-shadow: 0px -2px 4px #fff, 0px -2px 10px #FF3,0px -10px 20px #F90, 0px -20px 40px #C33; }
 
 /*# sourceMappingURL=main.css.map */
