@@ -102,7 +102,7 @@ function myPokemom(pokemon) {
     panelColor = "card-panel blue lighten-4";
   }
 
-  myDiv.innerHTML = (`<div class="row">
+  myDiv.innerHTML = `<div class="row">
 
       <div class="col l6 s12">
         <div class="${ panelColor }">
@@ -138,7 +138,7 @@ function myPokemom(pokemon) {
                 <i class="material-icons">list</i>Moves</div>
               <div class="collapsible-body">
                 <span>
-                  <ul>
+                  <ul id="moves">
                     <li><strong>Moves:</strong></li> 
                   </ul>
                 </span>
@@ -155,7 +155,7 @@ function myPokemom(pokemon) {
         </div>
       </div>
 
-    </div>`);
+    </div>`;
 
   divBox.appendChild(myDiv);
 
@@ -175,73 +175,144 @@ let poke3 = [];
 // Use axios.all to call all three promises at once. Thank you Pablo.
 axios.all([chooseRaichu, chooseLeafeon, chooseArceus])
   .then(catchem => {
-    const poke1 = catchem[0].data; // create constants for each promise which represents a different pokemon
-    const poke2 = catchem[1].data;
-    const poke3 = catchem[2].data;
+    poke1 = catchem[0].data; // create constants for each promise which represents a different pokemon
+    poke2 = catchem[1].data;
+    poke3 = catchem[2].data;
 
     // new ajax request to get moves list for each pokemon - this code was written by Rich but I fully understand how it works 
-    function getMoves(element) {
-      let makingMoves = element.moves;
-      let move = [];
-      let ctr = makingMoves.length;
+    // function getMoves(element) {
+    //   let makingMoves = element.moves;
+    //   let move = [];
+    //   let ctr = makingMoves.length;
 
-      for (let i = 0; i < 4; i++) {
-        let randMoves = Math.floor(Math.random() * ctr);
-        axios.get(makingMoves[randMoves].move.url)
-          .then(function(catchemBonus) {
-            let pokemoves = catchemBonus.data;
-            // console.log(pokemoves);
-            // console.log(`Moves${i}: ${ makingMoves[randMoves].move.name }
-            //         Accruacy: ${ pokemoves.accuracy }
-            //         Power: ${ pokemoves.power }
-            //         Priority: ${ pokemoves.priority }`);
+    //   for (let i = 0; i < 4; i++) {
+    //     let randMoves = Math.floor(Math.random() * ctr);
+    //     axios.get(makingMoves[randMoves].move.url)
+    //       .then(function(catchemBonus) {
+    //         let pokemoves = catchemBonus.data;
+    //         // console.log(pokemoves);
+    //         // console.log(`Moves${i}: ${ makingMoves[randMoves].move.name }
+    //         //         Accruacy: ${ pokemoves.accuracy }
+    //         //         Power: ${ pokemoves.power }
+    //         //         Priority: ${ pokemoves.priority }`);
 
-            move.push(`${ makingMoves[randMoves].move.name }: Accuracy: ${ pokemoves.accuracy }, Power: ${ pokemoves.power }, Priority: ${ pokemoves.priority }`);
+    //         move.push(`${ makingMoves[randMoves].move.name }: Accuracy: ${ pokemoves.accuracy }, Power: ${ pokemoves.power }, Priority: ${ pokemoves.priority }`);
 
 
-          }).catch(function (response) {
-            console.error(response);
-          })
-      }
-      return element.move = move;
+    //       }).catch(function (response) {
+    //         console.error(response);
+    //       })
+    //   }
+    //   return element.move = move;
+    // }
 
-      // getMoves(poke1);
-      // getMoves(poke2);
-      // getMoves(poke3);
-      }
+    console.log(poke1);
 
-      console.log(poke1);
+    // the text in the species json is was identical and the ajax call is unreliable similar to the move url -- https://
+    let raichuInfo = "It becomes aggressive when it has electricity stored up. At such times, even its Trainer has to take care to avoid being attacked."
 
-      // the text in the species json is was identical and the ajax call is unreliable similar to the move url -- https://
-      let raichuInfo = "It becomes aggressive when it has electricity stored up. At such times, even its Trainer has to take care to avoid being attacked."
-  
-      // These create an instance of my pokemon objects, displays them to console and adds them to the pokeball container and my trainer object
-      let raichu = new Pokemon(poke1, raichuInfo);
-      console.log(raichu);
-      pokeball.add(raichu);
-      naruto.add(raichu);
-  
-      let leafeonInfo = "It lives a quiet life deep in forests where clean rivers flow."
-  
-      let leafeon = new Pokemon(poke2, leafeonInfo);
-      console.log(leafeon);
-      pokeball.add(leafeon);
-      naruto.add(leafeon);
-  
-      let arceusInfo = "It is told in mythology that this Pokémon was born before the universe even existed."
-  
-      let arceus = new Pokemon(poke3, arceusInfo);
-      console.log(arceus);
-      pokeball.add(arceus);
-      naruto.add(arceus);
-  
-      myPokemom(arceus);
-      myPokemom(leafeon);
-      myPokemom(raichu);
+    // These create an instance of my pokemon objects, displays them to console and adds them to the pokeball container and my trainer object
+    let raichu = new Pokemon(poke1, raichuInfo);
+    console.log(raichu);
+    getMoves(raichu, poke1);
+    pokeball.add(raichu);
+    naruto.add(raichu);
+
+    let leafeonInfo = "It lives a quiet life deep in forests where clean rivers flow."
+
+    let leafeon = new Pokemon(poke2, leafeonInfo);
+    console.log(leafeon);
+    pokeball.add(leafeon);
+    naruto.add(leafeon);
+
+    let arceusInfo = "It is told in mythology that this Pokémon was born before the universe even existed."
+
+    let arceus = new Pokemon(poke3, arceusInfo);
+    console.log(arceus);
+    pokeball.add(arceus);
+    naruto.add(arceus);
+
+    myPokemom(arceus);
+    myPokemom(leafeon);
+    myPokemom(raichu);
+
+    setTimeout(() => {
+      myMoves(raichu);
+    }, 9000);    
     
   }).catch((error) => {
     console.log(error);
 });
 
+function getMoves(object, element) {
+  let makingMoves = element.moves;
+  let move = [];
+  let ctr = makingMoves.length;
+
+  for (let i = 0; i < 4; i++) {
+    let randMoves = Math.floor(Math.random() * ctr);
+    axios.get(makingMoves[randMoves].move.url)
+      .then(function(catchemBonus) {
+        let pokemoves = catchemBonus.data;
+        console.log(pokemoves);
+        console.log(`Moves${i}: ${ makingMoves[randMoves].move.name }
+                Accruacy: ${ pokemoves.accuracy }
+                Power: ${ pokemoves.power }
+                Priority: ${ pokemoves.priority }`);
+
+        move.push(`${ makingMoves[randMoves].move.name }: Accuracy: ${ pokemoves.accuracy }, Power: ${ pokemoves.power }, Priority: ${ pokemoves.priority }`);
+
+
+      }).catch(function (response) {
+        console.error(response);
+      })
+  }
+  return object.move = move;
+};
+
+let myUl = document.getElementById("moves")
+
+function myMoves(pokemon) {
+  let myLi = document.createElement("li");
+
+  myLi.innerHTML = `<li>${ pokemon.moves[0] }</li>
+  <li>${ pokemon.moves[1] }</li>
+  <li>${ pokemon.moves[2] }</li>
+  <li>${ pokemon.moves[3] }</li>`;
+
+  myUl.appendChild(myLi);
+  
+}
+
+
+// let raichuInfo = "It becomes aggressive when it has electricity stored up. At such times, even its Trainer has to take care to avoid being attacked."
+
+// // These create an instance of my pokemon objects, displays them to console and adds them to the pokeball container and my trainer object
+// let raichu = new Pokemon(poke1, raichuInfo);
+// console.log(raichu);
+// getMoves(raichu, poke1);
+// pokeball.add(raichu);
+// naruto.add(raichu);
+
+// let leafeonInfo = "It lives a quiet life deep in forests where clean rivers flow."
+
+// let leafeon = new Pokemon(poke2, leafeonInfo);
+// console.log(leafeon);
+// pokeball.add(leafeon);
+// naruto.add(leafeon);
+
+// let arceusInfo = "It is told in mythology that this Pokémon was born before the universe even existed."
+
+// let arceus = new Pokemon(poke3, arceusInfo);
+// console.log(arceus);
+// pokeball.add(arceus);
+// naruto.add(arceus);
+
+// setTimeout(() => {
+// myPokemom(arceus);
+// myPokemom(leafeon);
+// myPokemom(raichu);
+// }, 9000);
+// the text in the species json is was identical and the ajax call is unreliable similar to the move url -- https://
 
 
