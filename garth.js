@@ -200,11 +200,11 @@ axios.all([chooseRaichu, chooseLeafeon, chooseArceus])
         axios.get(makingMoves[randMoves].move.url)
           .then(function(catchEmBonus) {
             let pokemoves = catchEmBonus.data;
-            console.log(pokemoves);
-            console.log(`Moves${i}: ${ makingMoves[randMoves].move.name }
-                    Accruacy: ${ pokemoves.accuracy }
-                    Power: ${ pokemoves.power }
-                    Priority: ${ pokemoves.priority }`);
+            // console.log(pokemoves);
+            // console.log(`Moves${i}: ${ makingMoves[randMoves].move.name }
+            //         Accruacy: ${ pokemoves.accuracy }
+            //         Power: ${ pokemoves.power }
+            //         Priority: ${ pokemoves.priority }`);
 
             move.push(`${ makingMoves[randMoves].move.name }: Accuracy: ${ pokemoves.accuracy }, Power: ${ pokemoves.power }, Priority: ${ pokemoves.priority }`);
 
@@ -227,21 +227,21 @@ axios.all([chooseRaichu, chooseLeafeon, chooseArceus])
 
     // These create an instance of my pokemon objects, displays them to console and adds them to the pokeball container and my trainer object
     let raichu = new Pokemon(poke1, raichuInfo);
-    console.log(raichu);
+    // console.log(raichu);
     pokeball.add(raichu);
     naruto.add(raichu);
 
     let leafeonInfo = "It lives a quiet life deep in forests where clean rivers flow."
 
     let leafeon = new Pokemon(poke2, leafeonInfo);
-    console.log(leafeon);
+    // console.log(leafeon);
     pokeball.add(leafeon);
     naruto.add(leafeon);
 
     let arceusInfo = "It is told in mythology that this Pokémon was born before the universe even existed."
 
     let arceus = new Pokemon(poke3, arceusInfo);
-    console.log(arceus);
+    // console.log(arceus);
     pokeball.add(arceus);
     naruto.add(arceus);
 
