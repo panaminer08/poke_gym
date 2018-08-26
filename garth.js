@@ -40,7 +40,7 @@ class Trainer {
 }
 
 //new instance of Trainer class 
-const naruto = new Trainer("Naruto", "male", "Konaha", "Hokage / Gym Leader");
+const naruto = new Trainer("Naruto", "male", "Konaha", "Hokage / Gym Leader / Trainer");
 
 // Pokeball container object
 class Pokeball {
@@ -96,10 +96,16 @@ function myPokemom(pokemon) {
 
   let panelColor = "card-panel grey";
 
-  if (pokemon.name === "leafeon") {
+  if (pokemon.type === "grass") {
     panelColor = "card-panel green lighten-4";
-  } else if (pokemon.name === "raichu") {
+  } else if (pokemon.type === "electric") {
     panelColor = "card-panel blue lighten-4";
+  } else if (pokemon.type === "water") {
+    panelColor = "card-panel blue lighten-2";
+  } else if (pokemon.type === "fighting") {
+    panelColor = "card-panel brown lighten-2";
+  } else if (pokemon.type === "normal") {
+    panelColor = "card-panel purple lighten-4";
   }
 
   myDiv.innerHTML = `<div class="row">
@@ -242,7 +248,7 @@ axios.all([chooseRaichu, chooseLeafeon, chooseArceus])
     myPokemom(arceus);
     myPokemom(leafeon);
     myPokemom(raichu);
-    }, 2500);
+    }, 3000);
 
   }).catch((error) => {
     console.log(error);
