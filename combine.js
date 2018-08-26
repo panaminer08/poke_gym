@@ -24,11 +24,11 @@ axios.all([choosePikachu, chooseMienshao, choosePsyduck])
         axios.get(makingMoves[randMoves].move.url)
           .then(function(catchEmBonus) {
             let pokemoves = catchEmBonus.data;
-            console.log(pokemoves);
-            console.log(`Moves${i}: ${ makingMoves[randMoves].move.name }
-                    Accruacy: ${ pokemoves.accuracy }
-                    Power: ${ pokemoves.power }
-                    Priority: ${ pokemoves.priority }`);
+            // console.log(pokemoves);
+            // console.log(`Moves${i}: ${ makingMoves[randMoves].move.name }
+            //         Accruacy: ${ pokemoves.accuracy }
+            //         Power: ${ pokemoves.power }
+            //         Priority: ${ pokemoves.priority }`);
 
             move.push(`${ makingMoves[randMoves].move.name }: Accuracy: ${ pokemoves.accuracy }, Power: ${ pokemoves.power }, Priority: ${ pokemoves.priority }`);
 
@@ -51,24 +51,24 @@ axios.all([choosePikachu, chooseMienshao, choosePsyduck])
 
     // These create an instance of my pokemon objects, displays them to console and adds them to the pokeball container and my trainer object
     let pikachu = new Pokemon(poke4, pikachuInfo);
-    console.log(pikachu);
+    // console.log(pikachu);
     // getMoves(pikachu, poke4);
     pokeball.add(pikachu);
-    // reynaldo.add(pikachu);
+    reynaldo.add(pikachu);
 
     let mienshaoInfo = "Using the long fur on its arms like whips, it launches into combo attacks that, once started, no one can stop."
 
     let mienshao = new Pokemon(poke5, mienshaoInfo);
-    console.log(mienshao);
+    // console.log(mienshao);
     pokeball.add(mienshao);
-    // reynaldo.add(mienshao);
+    reynaldo.add(mienshao);
 
     let psyduckInfo = "This Pokémon is troubled by constant headaches. The more pain it’s in, the more powerful its psychokinesis becomes."
 
     let psyduck = new Pokemon(poke6, psyduckInfo);
-    console.log(psyduck);
+    // console.log(psyduck);
     pokeball.add(psyduck);
-    // reynaldo.add(psyduck);
+    reynaldo.add(psyduck);
 
     myPokemom(pikachu);
     myPokemom(psyduck);
