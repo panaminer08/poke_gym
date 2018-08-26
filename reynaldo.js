@@ -20,7 +20,9 @@ class Pokemon {
 
 }
 
-let reynaldo = new Reynaldo()
+let reynaldo = new Trainer("Reynaldo", "male", "Konaha", "Trainer");
+console.log(reynaldo);
+
 
 let ul = document.getElementsByTagName("ul")
 let li = document.createElement("li")
@@ -48,7 +50,7 @@ axios.get("https://fizal.me/pokeapi/api/25.json")
 
 
         console.log(thunder.name)
-    })
+});
 
 
 
@@ -69,7 +71,7 @@ axios.get("https://fizal.me/pokeapi/api/620.json")
         reynaldo.add(psycho)
 
 
-    })
+})
 
 axios.get("https://fizal.me/pokeapi/api/54.json")
     .then((water) => {
@@ -86,7 +88,7 @@ axios.get("https://fizal.me/pokeapi/api/54.json")
         )
 
         reynaldo.add(squirt)
-    })
+})
 
 
 
@@ -124,7 +126,7 @@ axios.get("https://fizal.me/pokeapi/api/25.json")
         document.getElementById("reynit").onclick = function (event) {
             type(pokes)
         }
-    })
+})
 
 
 axios.get("https://fizal.me/pokeapi/api/620.json")
@@ -160,7 +162,7 @@ axios.get("https://fizal.me/pokeapi/api/620.json")
         document.getElementById("reyna").onclick = function (event) {
             type2(psychic)
         }
-    })
+})
 
 axios.get("https://fizal.me/pokeapi/api/54.json")
     .then((water) => {
@@ -194,8 +196,10 @@ axios.get("https://fizal.me/pokeapi/api/54.json")
         }
         document.getElementById("reyno").onclick = function (event) {
             type3(duck)
-        }
-    })
+    }
+})
+
+console.log(reynaldo);
 
 // This code down here will be my pokemon, particularly pikachu, in a side card 
 // with hidden stats once you click.
@@ -222,7 +226,7 @@ axios.get("https://fizal.me/pokeapi/api/54.json")
 //   </div>
 //   </div>
 //   </div>`
-  
+
 //   ci.innerHTML =`
 //   <div class="container"
 //   <div class="row">
