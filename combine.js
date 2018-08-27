@@ -1,6 +1,4 @@
-const choosePikachu = axios.get("https://fizal.me/pokeapi/api/25.json")
-const choosePsyduck = axios.get("https://fizal.me/pokeapi/api/54.json")
-const chooseMienshao = axios.get("https://fizal.me/pokeapi/api/620.json")
+M.AutoInit();
 
 document.getElementById("btn").onclick = function (event) {
     alert("Thank you for joining our community. We hope you enjoy your stay!")
@@ -78,3 +76,44 @@ axios.all([choosePikachu, chooseMienshao, choosePsyduck])
   }).catch((error) => {
     console.log(error);
 });
+
+let trainer1 = document.getElementById("trainer-one");
+
+trainer1.innerHTML = (`<li><strong>Name:</strong>${ naruto.name } </li>
+<li><strong>Gender:</strong>${ naruto.gender }</li>
+<li><strong>Hometown:</strong>${ naruto.hometown }</li>
+<li><strong>Occupation:</strong>${ naruto.occupation }</li>`);
+
+let trainer2 = document.getElementById("trainer-two");
+
+trainer2.innerHTML = (`<li><strong>Name:</strong>${ reynaldo.name } </li>
+<li><strong>Gender:</strong>${ reynaldo.gender }</li>
+<li><strong>Hometown:</strong>${ reynaldo.hometown }</li>
+<li><strong>Occupation:</strong>${ reynaldo.occupation }</li>`);
+
+
+// Found the code for this animation here -- http://tobiasahlin.com/moving-letters/#7
+// Wrap every letter in a span
+$('.ml7 .letters').each(function(){
+  $(this).html($(this).text().replace(/([^\x00-\x80]|\w)/g, "<span class='letter'>$&</span>"));
+});
+
+anime.timeline({loop: true})
+  .add({
+    targets: '.ml7 .letter',
+    translateY: ["1.1em", 0],
+    translateX: ["0.55em", 0],
+    translateZ: 0,
+    rotateZ: [180, 0],
+    duration: 750,
+    easing: "easeOutExpo",
+    delay: function(el, i) {
+      return 50 * i;
+    }
+  }).add({
+    targets: '.ml7',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 1000
+  });
