@@ -1,9 +1,5 @@
-To gain access and make this project work, you would have to download/clone the repository in your vscode, then run ruby app.rb in your
-in your terminal.
+This was a group project, with a basic back-end similar to my Innerimag file.
 
-With this project I wanted to display my ability to create a gym.
+Front end was done using materialize.
 
-I used JavaScript to maipulate the click of the pokemon balls.
-
-Outside library for the front-end styles.
-
+This was a group project with me and one other person, where i did the front end and he did the back end. 
